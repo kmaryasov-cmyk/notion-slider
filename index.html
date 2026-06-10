@@ -24,9 +24,18 @@
         }
 
         .slider-container {
-            position: relative;
             width: 100vw;
             height: 100vh;
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) 52px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .viewport {
+            position: relative;
+            min-height: 0;
+            width: 100%;
             overflow: hidden;
             background: #fff;
         }
@@ -108,15 +117,14 @@
         }
 
         .dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 100%;
+            min-height: 52px;
+            padding-top: 10px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             gap: 6px;
-            z-index: 10;
+            background: #fff;
         }
 
         .dot {
@@ -148,6 +156,10 @@
         }
 
         @media (max-width: 640px) {
+            .slider-container {
+                grid-template-rows: minmax(0, 1fr) 50px;
+            }
+
             .nav-btn {
                 width: 40px;
                 height: 44px;
@@ -163,7 +175,8 @@
             }
 
             .dots {
-                bottom: 18px;
+                min-height: 50px;
+                padding-top: 9px;
             }
         }
 
@@ -184,29 +197,31 @@
         aria-roledescription="carousel"
         aria-label="Слайдер с изображениями исследования"
     >
-        <div class="slides" id="slides" aria-live="polite">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1LToRZu1PLFrk57jLYF3p8Thp1SfDXh_b&sz=w1200" alt="Слайд 1 из 7" loading="eager">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1FihSre28733_xxLUTnUgzRaMGAm5neVC&sz=w1200" alt="Слайд 2 из 7" loading="lazy">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1_TJDqWrYmJqairkRBnHPS1ZwxVcZDTAE&sz=w1200" alt="Слайд 3 из 7" loading="lazy">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=10rpm0NYMBS02nCuLBVJe2v6h0gwzoyuB&sz=w1200" alt="Слайд 4 из 7" loading="lazy">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1hcJIKPYjfPwnDxkqDxXydPXAy9gWssMQ&sz=w1200" alt="Слайд 5 из 7" loading="lazy">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1wJNatZlKVKHv8xYpFhnfikveBwgZC6E_&sz=w1200" alt="Слайд 6 из 7" loading="lazy">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1bA_woXrzH_SxF1SNLVITUHd9YSmnpW0c&sz=w1200" alt="Слайд 7 из 7" loading="lazy">
+        <div class="viewport">
+            <div class="slides" id="slides" aria-live="polite">
+                <img class="slide" src="https://drive.google.com/thumbnail?id=1LToRZu1PLFrk57jLYF3p8Thp1SfDXh_b&sz=w1200" alt="Слайд 1 из 7" loading="eager">
+                <img class="slide" src="https://drive.google.com/thumbnail?id=1FihSre28733_xxLUTnUgzRaMGAm5neVC&sz=w1200" alt="Слайд 2 из 7" loading="lazy">
+                <img class="slide" src="https://drive.google.com/thumbnail?id=1_TJDqWrYmJqairkRBnHPS1ZwxVcZDTAE&sz=w1200" alt="Слайд 3 из 7" loading="lazy">
+                <img class="slide" src="https://drive.google.com/thumbnail?id=10rpm0NYMBS02nCuLBVJe2v6h0gwzoyuB&sz=w1200" alt="Слайд 4 из 7" loading="lazy">
+                <img class="slide" src="https://drive.google.com/thumbnail?id=1hcJIKPYjfPwnDxkqDxXydPXAy9gWssMQ&sz=w1200" alt="Слайд 5 из 7" loading="lazy">
+                <img class="slide" src="https://drive.google.com/thumbnail?id=1wJNatZlKVKHv8xYpFhnfikveBwgZC6E_&sz=w1200" alt="Слайд 6 из 7" loading="lazy">
+                <img class="slide" src="https://drive.google.com/thumbnail?id=1bA_woXrzH_SxF1SNLVITUHd9YSmnpW0c&sz=w1200" alt="Слайд 7 из 7" loading="lazy">
+            </div>
+
+            <button class="nav-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Предыдущий слайд">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 5L8 12L15 19"></path>
+                </svg>
+            </button>
+
+            <button class="nav-btn next" type="button" onclick="moveSlide(1)" aria-label="Следующий слайд">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 5L16 12L9 19"></path>
+                </svg>
+            </button>
         </div>
 
-        <button class="nav-btn prev" type="button" onclick="moveSlide(-1)" aria-label="Предыдущий слайд">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15 5L8 12L15 19"></path>
-            </svg>
-        </button>
-
-        <button class="nav-btn next" type="button" onclick="moveSlide(1)" aria-label="Следующий слайд">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 5L16 12L9 19"></path>
-            </svg>
-        </button>
-
-        <div class="dots" id="dots" aria-label="Навигация по слайдам"></div>
+        <nav class="dots" id="dots" aria-label="Навигация по слайдам"></nav>
     </main>
 
     <script>
@@ -223,12 +238,7 @@
             dot.classList.add('dot');
             dot.type = 'button';
             dot.setAttribute('aria-label', `Перейти к слайду ${i + 1} из ${totalSlides}`);
-
-            if (i === 0) {
-                dot.setAttribute('aria-current', 'true');
-            } else {
-                dot.setAttribute('aria-current', 'false');
-            }
+            dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
 
             dot.addEventListener('click', () => goToSlide(i));
             dotsContainer.appendChild(dot);
@@ -300,202 +310,6 @@
         });
 
         updateSlider();
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ноушн Слайдер</title>
-
-    <style>
-        html,
-        body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            box-sizing: border-box;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: inherit;
-        }
-
-        .slider-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            background: #fff;
-        }
-
-        .slides {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.3s ease-in-out;
-            touch-action: pan-y;
-        }
-
-        .slide {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center center;
-            background: #fff;
-            user-select: none;
-            -webkit-user-drag: none;
-            display: block;
-        }
-
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 34px;
-            height: 42px;
-            padding: 0;
-            border: none;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.24);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            user-select: none;
-            font-size: 22px;
-            line-height: 1;
-            z-index: 10;
-            transition: background 0.2s ease, opacity 0.2s ease;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-        }
-
-        .btn:hover {
-            background: rgba(0, 0, 0, 0.42);
-        }
-
-        .prev {
-            left: 18px;
-        }
-
-        .next {
-            right: 18px;
-        }
-
-        .dots {
-            position: absolute;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 9px;
-            z-index: 10;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: rgba(0, 0, 0, 0.22);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-
-        .dot.active {
-            background: rgba(0, 0, 0, 0.72);
-            transform: scale(1.18);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="slider-container">
-        <div class="slides" id="slides">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1LToRZu1PLFrk57jLYF3p8Thp1SfDXh_b&sz=w1200" alt="Слайд 1">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1FihSre28733_xxLUTnUgzRaMGAm5neVC&sz=w1200" alt="Слайд 2">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1_TJDqWrYmJqairkRBnHPS1ZwxVcZDTAE&sz=w1200" alt="Слайд 3">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=10rpm0NYMBS02nCuLBVJe2v6h0gwzoyuB&sz=w1200" alt="Слайд 4">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1hcJIKPYjfPwnDxkqDxXydPXAy9gWssMQ&sz=w1200" alt="Слайд 5">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1wJNatZlKVKHv8xYpFhnfikveBwgZC6E_&sz=w1200" alt="Слайд 6">
-            <img class="slide" src="https://drive.google.com/thumbnail?id=1bA_woXrzH_SxF1SNLVITUHd9YSmnpW0c&sz=w1200" alt="Слайд 7">
-        </div>
-
-        <button class="btn prev" onclick="moveSlide(-1)" aria-label="Предыдущий слайд">&#10094;</button>
-        <button class="btn next" onclick="moveSlide(1)" aria-label="Следующий слайд">&#10095;</button>
-
-        <div class="dots" id="dots"></div>
-    </div>
-
-    <script>
-        let currentIndex = 0;
-
-        const slides = document.getElementById('slides');
-        const totalSlides = document.querySelectorAll('.slide').length;
-        const dotsContainer = document.getElementById('dots');
-
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-
-            if (i === 0) {
-                dot.classList.add('active');
-            }
-
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-
-        const dots = document.querySelectorAll('.dot');
-
-        function updateSlider() {
-            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        function moveSlide(direction) {
-            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-            updateSlider();
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            updateSlider();
-        }
-
-        let startX = 0;
-        let isDragging = false;
-
-        slides.addEventListener('touchstart', (event) => {
-            startX = event.touches[0].clientX;
-            isDragging = true;
-        });
-
-        slides.addEventListener('touchend', (event) => {
-            if (!isDragging) return;
-
-            const endX = event.changedTouches[0].clientX;
-            const diff = startX - endX;
-
-            if (diff > 50) {
-                moveSlide(1);
-            } else if (diff < -50) {
-                moveSlide(-1);
-            }
-
-            isDragging = false;
-        });
     </script>
 </body>
 </html>
