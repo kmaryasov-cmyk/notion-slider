@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 40px;
+            background: #fff;
+            overflow: hidden;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            box-sizing: border-box;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+
+        .contact-bar {
+            width: 100%;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            padding: 0;
+            background: #fff;
+        }
+
+        .contact-link {
+            color: #505258;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            text-decoration-color: currentColor;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: color 0.16s ease, background-color 0.16s ease;
+        }
+
+        .contact-link:hover {
+            color: #2f3136;
+        }
+
+        .contact-link:focus-visible {
+            outline: 2px solid rgba(80, 82, 88, 0.45);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .contact-link--ghost {
+            width: 49px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 0;
+            border-radius: 4px;
+            background: transparent;
+            color: #505258;
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .contact-link--ghost:hover {
+            background: rgba(5, 21, 36, 0.06);
+            color: #505258;
+        }
+
+        .contact-link--ghost:active {
+            background: rgba(11, 18, 40, 0.14);
+            color: #505258;
+        }
+
+        .contact-link--ghost:focus-visible {
+            outline: 2px solid rgba(80, 82, 88, 0.45);
+            outline-offset: 3px;
+        }
+
+        .contact-link--ghost svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+            flex: 0 0 auto;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .contact-link--ghost span {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 640px) {
+            .contact-bar {
+                gap: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .contact-link {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="contact-bar" aria-label="Контакты и CV">
+        <a
+            class="contact-link"
+            href="https://www.linkedin.com/in/REPLACE_LINKEDIN"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Открыть LinkedIn"
+        >
+            LinkedIn
+        </a>
+
+        <a
+            class="contact-link"
+            href="https://wa.me/905366105748"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в WhatsApp"
+        >
+            WhatsApp
+        </a>
+
+        <a
+            class="contact-link"
+            href="mailto:k.maryasov@gmail.com"
+            aria-label="Написать на email k.maryasov@gmail.com"
+        >
+            k.maryasov@gmail.com
+        </a>
+
+        <a
+            class="contact-link contact-link--ghost"
+            href="REPLACE_CV_URL"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Открыть CV"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4V15"></path>
+                <path d="M7.5 10.5L12 15L16.5 10.5"></path>
+                <path d="M5 20H19"></path>
+            </svg>
+            <span>CV</span>
+        </a>
+    </nav>
+</body>
+</html>
