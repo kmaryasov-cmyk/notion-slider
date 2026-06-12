@@ -10,7 +10,8 @@
         body {
             margin: 0;
             width: 100%;
-            min-height: 40px;
+            height: 32px;
+            max-height: 32px;
             background: #fff;
             overflow: hidden;
             font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -25,13 +26,16 @@
 
         .contact-bar {
             width: 100%;
-            min-height: 32px;
+            height: 32px;
+            max-height: 32px;
             display: flex;
             align-items: center;
             gap: 32px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             padding: 0;
+            margin: 0;
             background: #fff;
+            overflow: hidden;
         }
 
         .contact-link {
@@ -55,7 +59,7 @@
 
         .contact-link:focus-visible {
             outline: 2px solid rgba(80, 82, 88, 0.45);
-            outline-offset: 4px;
+            outline-offset: 3px;
             border-radius: 4px;
         }
 
@@ -72,6 +76,7 @@
             color: #505258;
             text-decoration: none;
             line-height: 1;
+            flex: 0 0 auto;
         }
 
         .contact-link--ghost:hover {
@@ -82,11 +87,6 @@
         .contact-link--ghost:active {
             background: rgba(11, 18, 40, 0.14);
             color: #505258;
-        }
-
-        .contact-link--ghost:focus-visible {
-            outline: 2px solid rgba(80, 82, 88, 0.45);
-            outline-offset: 3px;
         }
 
         .contact-link--ghost svg {
